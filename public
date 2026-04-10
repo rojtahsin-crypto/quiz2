@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="ku">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>ڕۆژ حەوار - یاری زانستی پێشکەوتوو</title>
+<!-- Socket.IO client toevoegen -->
+<script src="/socket.io/socket.io.js"></script>
+<style>
+/* AL JOUW CSS BLIJFT 100% HETZELFDE */
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+user-select: none;
+}
+
+body {
+background: linear-gradient(145deg, #0a0f1e 0%, #0c1222 100%);
+font-family: 'Segoe UI', 'Poppins', 'Roboto', system-ui, -apple-system, 'Noto Sans Arabic', 'Noto Sans Kurdish', sans-serif;
+min-height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+}
+
+.app-container {
+max-width: 1400px;
+width: 100%;
+background: rgba(18, 25, 45, 0.7);
+backdrop-filter: blur(12px);
+border-radius: 3rem;
+box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+overflow: hidden;
+transition: all 0.3s ease;
+}
+
+.header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1.2rem 2rem;
+background: rgba(10, 14, 23, 0.8);
+border-bottom: 1px solid rgba(255,215,0,0.3);
+flex-wrap: wrap;
+gap: 1rem;
+}
+
+.logo-area {
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.flag-container {
+display: flex;
+gap: 8px;
+}
+
+.flag {
+width: 42px;
+height: 28px;
+border-radius: 6px;
+box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+transition: transform 0.2s ease;
+}
+
+.flag-kurdistan {
+background: linear-gradient(135deg, #E30A17 0%, #E30A17 33%, #FFFFFF 33%, #FFFFFF 66%, #009639 66%, #009639 100%);
+position: relative;
+}
+.flag-kurdistan::after {
+content: "☀️";
+position: absolute;
+font-size: 14px;
+top: 4px;
+left: 12px;
+color: #FFD700;
+text-shadow: 0 0 2px black;
+}
+
+.flag-belgium {
+background: linear-gradient(90deg, #000000 0%, #000000 33%, #FDDA24 33%, #FDDA24 66%, #EF3340 66%, #EF3340 100%);
+}
+
+.brand {
+font-size: 1.7rem;
+font-weight: 800;
+background: linear-gradient(135deg, #F9E0A0, #E0B354);
+-webkit-background-clip: text;
+background-clip: text;
+color: transparent;
+letter-spacing: -0.5px;
+}
+
+.lang-switch {
+display: flex;
+gap: 12px;
+background: #1e2a3a;
+padding: 6px 12px;
+border-radius: 60px;
+}
+
+.lang-btn {
+background: none;
+border: none;
+font-weight: bold;
+font-size: 1rem;
+padding: 6px 16px;
+border-radius: 40px;
+cursor: pointer;
+transition: all 0.2s;
+color: #ccc;
+}
+
+.lang-btn.active {
+background: #FFB347;
+color: #0a0f1e;
+box-shadow: 0 2px 8px rgba(255,180,70,0.4);
+}
+
+.screen {
+padding: 2rem;
+transition: 0.2s;
+}
+
+.hidden {
+display: none !important;
+}
+
+.hero-card {
+background: rgba(255,255,255,0.05);
+border-radius: 2rem;
+padding: 2.5rem;
+text-align: center;
+max-width: 600px;
+margin: 0 auto;
+backdrop-filter: blur(4px);
+}
+
+.input-field {
+width: 100%;
+padding: 1rem 1.5rem;
+font-size: 1.2rem;
+border-radius: 60px;
+border: none;
+background: #0f172a;
+color: white;
+text-align: center;
+margin: 1rem 0;
+outline: none;
+border: 1px solid #334155;
+}
+
+.btn {
+background: linear-gradient(95deg, #3b82f6, #2563eb);
+border: none;
+padding: 12px 28px;
+font-size: 1.1rem;
+font-weight: bold;
+border-radius: 60px;
+color: white;
+margin: 0.5rem;
+cursor: pointer;
+transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.btn-primary {
+background: linear-gradient(95deg, #a855f7, #7c3aed);
+box-shadow: 0 4px 14px rgba(168,85,247,0.4);
+}
+
+.btn-success {
+background: linear-gradient(95deg, #10b981, #059669);
+}
+
+.room-code {
+font-size: 2.2rem;
+letter-spacing: 4px;
+background: #00000055;
+padding: 0.5rem;
+border-radius: 60px;
+display: inline-block;
+margin: 1rem 0;
+}
+
+.lobby-layout {
+display: flex;
+flex-wrap: wrap;
+gap: 2rem;
+}
+
+.players-panel {
+flex: 1;
+background: #0f172a99;
+border-radius: 2rem;
+padding: 1.5rem;
+}
+
+.chat-panel {
+flex: 0.8;
+background: #0f172a99;
+border-radius: 2rem;
+padding: 1rem;
+display: flex;
+flex-direction: column;
+}
+
+.player-card {
+background: #1e293b;
+margin: 0.5rem 0;
+padding: 0.8rem;
+border-radius: 60px;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.quiz-area {
+background: #0f172a;
+border-radius: 2rem;
+padding: 1.8rem;
+}
+
+.question-text {
+font-size: 1.8rem;
+font-weight: 600;
+margin-bottom: 2rem;
+text-align: center;
+}
+
+.answers-grid {
+display: grid;
+grid-template-columns: repeat(2,1fr);
+gap: 1rem;
+}
+
+.answer-btn {
+background: #1e293b;
+padding: 1rem;
+border-radius: 1.5rem;
+font-size: 1.1rem;
+cursor: pointer;
+transition: 0.07s linear;
+text-align: center;
+font-weight: 500;
+border: 1px solid #475569;
+}
+
+.scoreboard {
+background: #02061780;
+border-radius: 1.5rem;
+padding: 1rem;
+margin-bottom: 1rem;
+}
+
+.podium {
+display: flex;
+justify-content: center;
+align-items: flex-end;
+gap: 2rem;
+margin: 3rem 0;
+}
+
+.podium-item {
+text-align: center;
+background: #1e293b;
+border-radius: 1.5rem 1.5rem 0 0;
+padding: 1rem;
+width: 150px;
+}
+
+.first { background: radial-gradient(circle, #ffd966, #b8860b); height: 180px; padding-top: 2rem;}
+.second { background: #c0c0c0; height: 130px; }
+.third { background: #cd7f32; height: 100px; }
+
+@keyframes bounce {
+0%{ transform: scale(1);}
+100%{ transform: scale(1.03);}
+}
+.correct-highlight {
+background: #10b981 !important;
+box-shadow: 0 0 15px #10b981;
+}
+.wrong-highlight {
+background: #ef4444 !important;
+}
+</style>
+</head>
+<body>
+<div class="app-container" id="appRoot">
+<div class="header">
+<div class="logo-area">
+<div class="flag-container">
+<div class="flag flag-kurdistan"></div>
+<div class="flag flag-belgium"></div>
+</div>
+<div class="brand">ڕۆژ حەوار</div>
+</div>
+<div class="lang-switch" id="langSwitch">
+<button class="lang-btn active" data-lang="ku">کوردی</button>
+<button class="lang-btn" data-lang="nl">Nederlands</button>
+</div>
+</div>
+
+<div id="entryScreen" class="screen">
+<div class="hero-card">
+<h2 id="entryTitle">✨ بەخێربێیت بۆ یاری ڕۆژ حەوار ✨</h2>
+<input type="text" id="playerNameInput" class="input-field" placeholder="ناوی یاریزان / Spelersnaam" maxlength="20">
+<div>
+<button id="createRoomBtn" class="btn btn-primary">🏆 دروستکردنی ژووری نوێ</button>
+<button id="joinRoomBtn" class="btn">🔗 چوونە ناو ژوور</button>
+</div>
+<div id="joinSection" class="hidden" style="margin-top: 1rem;">
+<input type="text" id="roomCodeInput" class="input-field" placeholder="کۆدی ژوور (م: KRD-7742)">
+<button id="submitJoinBtn" class="btn btn-success">بچۆ ژوورەوە</button>
+</div>
+</div>
+</div>
+
+<div id="lobbyScreen" class="screen hidden">
+<div id="lobbyDynamic"></div>
+</div>
+
+<div id="gameScreen" class="screen hidden">
+<div class="quiz-area" id="gameContainer"></div>
+</div>
+
+<div id="podiumScreen" class="screen hidden">
+<div id="podiumContainer" style="text-align: center;"></div>
+<button id="backToLobbyBtn" class="btn btn-primary" style="margin-top: 2rem;">گەڕانەوە بۆ لۆبی</button>
+</div>
+</div>
+
+<script>
+// --------------------------------------------------------------
+// AL JOUW BESTAANDE JAVASCRIPT (NIKS VERWIJDERD, ALLEMAAL HIER)
+// --------------------------------------------------------------
+const QUESTIONS_DB = {
+ku: {
+"سەیارەکان": [
+{ text: "بزوێنەری وانکڵ (Wankel) لە کام سەیارەی بەناوبانگدا بەکارهاتووە؟", options: ["پۆرشە 911", "مازدا RX-7", "تۆیۆتا سوپرا", "دۆدج چاڕجەر"], correct: 1 },
+{ text: "یەکەم ئۆتۆمبێلی بەرهەمهێنراو بە توربۆ لە لایەن کێوە؟", options: ["Oldsmobile Jetfire", "BMW 2002 Turbo", "Saab 99 Turbo", "پۆرشە 930"], correct: 0 },
+{ text: "ناوی تەواوی BMW چییە؟", options: ["Bayerische Motoren Werke", "Bayerische Motor Wagen", "Bayerisches Auto", "Bavarian Motor Cars"], correct: 0 },
+{ text: "کام سەیارە یەکەمجار سنووری ٤٠٠ کم/سەعاتی شکاند؟", options: ["Bugatti Veyron", "Koenigsegg Agera", "SSC Ultimate Aero", "Hennessey Venom GT"], correct: 0 },
+{ text: "LSD لە سیستەمی ئۆتۆمبێلدا چی دەکات؟", options: ["ڕێگری لە خلیسکێنەی چرخ دەکات", "بزوێنەر زیاتر هێز دەدات", "وەرگرێکی خێراتر", "کۆڵدکەری ئاویل"], correct: 0 }
+],
+"زانست": [
+{ text: "سفری ڕەها (Absolute Zero) چەند پلەی سیلیزییە؟", options: ["0°C", "-273.15°C", "-459.67°C", "-100°C"], correct: 1 },
+{ text: "کام تەنۆلکە کارگەی نەرێنی هەیە؟", options: ["پڕۆتۆن", "نیوترۆن", "ئەلێکترۆن", "مۆلێکول"], correct: 2 },
+{ text: "وێستگەی وزەی خانە (Powerhouse) پێی دەڵێن؟", options: ["نایوکلەس", "ریبۆسۆم", "مایتۆکۆندریا", "لایزۆسۆم"], correct: 2 },
+{ text: "باوکی بۆماوەزانی کێیە؟", options: ["ئەلێکساندر فلیمینگ", "ئایزاک نیوتن", "جێگریگۆر مێندڵ", "لوی پاستێر"], correct: 2 },
+{ text: "باوترین توخم لە گەردووندا چییە؟", options: ["هایدرۆجین", "هیلیۆم", "ئۆکسجین", "کاربۆن"], correct: 0 }
+],
+"جوگرافیا": [
+{ text: "کام وڵات زۆرترین دوورگەی هەیە؟", options: ["ئیندۆنیزیا", "فینلاند", "سوید", "نەرویج"], correct: 2 },
+{ text: "پایتەختی کازاخستان لە دوای 2022ەوە چییە؟", options: ["نورسوڵتان", "ئالماتی", "ئاستانا", "بیسکێک"], correct: 2 },
+{ text: "تاڤگەی ئەنجڵ لە کام وڵاتدایە؟", options: ["بەڕازیل", "ڤەنزوێلا", "زەئیر", "نیوزلەندا"], correct: 1 },
+{ text: "کام دەریا زۆرترین ڕێژەی خوێی هەیە؟", options: ["دەریای مردوو", "زەریای گرەن", "دەریای چەرمە", "دەریای سپی"], correct: 0 },
+{ text: "کام شار لەسەر دوو کیشوەر کەوتووە؟", options: ["قاهیرە", "مۆسکۆ", "ئەستەمبوڵ", "دوبەی"], correct: 2 }
+],
+"زمانی هۆڵەندی": [
+{ text: "واتای idiom 'Met de gebakken peren zitten'?", options: ["سەرکەوتنی گەورە", "چارەسەری کێشەکانی تر", "پاراستنی پارە", "پێکەنین بە دڵ"], correct: 1 },
+{ text: "ڕێسای 't kofschip بۆ کاری 'verven' لە ڕابردوودا:", options: ["verfde", "vervte", "verfde of verfte", "vervende"], correct: 0 },
+{ text: "هەموانای 'aanzienlijk' بریتییە لە:", options: ["Klein", "Behoorlijk groot", "Moeilijk", "Zeldzaam"], correct: 1 },
+{ text: "دەستەواژەی 'Helaas pindakaas' بۆ چی بەکار دێت؟", options: ["پیرۆزبایی", "داخەکەم بە شێوەی تەنزئامێز", "سوربوونەوە", "پێرستی خۆراک"], correct: 1 },
+{ text: "کۆی وشەی 'Museum' چییە؟", options: ["Museums", "Musea", "هەردووکیان ڕاستە", "Museum's"], correct: 2 }
+]
+},
+nl: {
+"Auto's": [
+{ text: "Welke auto heeft de beroemde Wankelmotor?", options: ["Porsche 911", "Mazda RX-7", "Toyota Supra", "Dodge Charger"], correct: 1 },
+{ text: "Eerste productieauto met turbo?", options: ["Oldsmobile Jetfire", "BMW 2002 Turbo", "Saab 99 Turbo", "Porsche 930"], correct: 0 },
+{ text: "Waar staat BMW voor?", options: ["Bayerische Motoren Werke", "Bayerische Motor Wagen", "Bayerisches Auto", "Bavarian Motor Cars"], correct: 0 },
+{ text: "Welke auto brak als eerste de 400 km/u grens?", options: ["Bugatti Veyron", "Koenigsegg Agera", "SSC Ultimate Aero", "Hennessey Venom GT"], correct: 0 },
+{ text: "Wat doet LSD in een auto?", options: ["Beperkt wielslip", "Meer vermogen", "Snellere versnelling", "Koeling"], correct: 0 }
+],
+"Wetenschap": [
+{ text: "Wat is het absolute nulpunt in Celsius?", options: ["0°C", "-273.15°C", "-459.67°C", "-100°C"], correct: 1 },
+{ text: "Welk deeltje heeft negatieve lading?", options: ["Proton", "Neutron", "Elektron", "Molecuul"], correct: 2 },
+{ text: "Krachtcentrale van de cel?", options: ["Nucleus", "Ribosoom", "Mitochondrion", "Lysosoom"], correct: 2 },
+{ text: "Wie is vader van de genetica?", options: ["Fleming", "Newton", "Mendel", "Pasteur"], correct: 2 },
+{ text: "Meest voorkomende element in universum?", options: ["Waterstof", "Helium", "Zuurstof", "Koolstof"], correct: 0 }
+],
+"Geografie": [
+{ text: "Welk land heeft de meeste eilanden?", options: ["Indonesië", "Finland", "Zweden", "Noorwegen"], correct: 2 },
+{ text: "Hoofdstad van Kazachstan sinds 2022?", options: ["Nur-Sultan", "Almaty", "Astana", "Bisjkek"], correct: 2 },
+{ text: "In welk land ligt de Angelwaterval?", options: ["Brazilië", "Venezuela", "Zaïre", "Nieuw-Zeeland"], correct: 1 },
+{ text: "Welke zee heeft het hoogste zoutgehalte?", options: ["Dode Zee", "Rode Zee", "Kaspische Zee", "Witte Zee"], correct: 0 },
+{ text: "Welke stad ligt op twee continenten?", options: ["Caïro", "Moskou", "Istanboel", "Dubai"], correct: 2 }
+],
+"Nederlandse Taal": [
+{ text: "Betekenis 'Met de gebakken peren zitten'?", options: ["Grote overwinning", "Met de problemen van anderen zitten", "Geld besparen", "Lachen"], correct: 1 },
+{ text: "Volgens 't kofschip, verleden tijd van 'verven':", options: ["verfde", "vervte", "beide", "vervende"], correct: 0 },
+{ text: "Synoniem van 'aanzienlijk':", options: ["Klein", "Behoorlijk groot", "Moeilijk", "Zeldzaam"], correct: 1 },
+{ text: "Uitdrukking 'Helaas pindakaas' betekent?", options: ["Gefeliciteerd", "Jammer (spottend)", "Verontschuldiging", "Lekker"], correct: 1 },
+{ text: "Meervoud van 'museum':", options: ["Museums", "Musea", "Beide correct", "Museum's"], correct: 2 }
+]
+}
+};
+
+let currentLang = "ku";
+let currentScreen = "entry";
+let currentRoom = { roomCode: null, topic: null, players: [], host: null, gameStarted: false, currentQuestionIndex: 0, scores: {}, answersTimestamps: {} };
+let gameInterval = null;
+let selectedTopic = null;
+let activeQuestions = [];
+let isHost = false;
+let myPlayerName = "";
+let chatMessages = [];
+
+const entryDiv = document.getElementById("entryScreen");
+const lobbyDiv = document.getElementById("lobbyScreen");
+const gameDiv = document.getElementById("gameScreen");
+const podiumDiv = document.getElementById("podiumScreen");
+const langBtns = document.querySelectorAll(".lang-btn");
+
+function updateUITexts() { renderCurrentScreen(); }
+function setScreen(screen) {
+currentScreen = screen;
+entryDiv.classList.add("hidden");
+lobbyDiv.classList.add("hidden");
+gameDiv.classList.add("hidden");
+podiumDiv.classList.add("hidden");
+if(screen === "entry") entryDiv.classList.remove("hidden");
+if(screen === "lobby") lobbyDiv.classList.remove("hidden");
+if(screen === "game") gameDiv.classList.remove("hidden");
+if(screen === "podium") podiumDiv.classList.remove("hidden");
+renderCurrentScreen();
+}
+
+function renderCurrentScreen() {
+if(currentScreen === "entry") renderEntry();
+if(currentScreen === "lobby") renderLobby();
+if(currentScreen === "game") renderGame();
+if(currentScreen === "podium") renderPodium();
+}
+
+function renderEntry() {}
+function renderLobby() {
+const lobbyDivContent = document.getElementById("lobbyDynamic");
+if(!lobbyDivContent) return;
+const topicOptions = currentLang === "ku" ? ["سەیارەکان", "زانست", "جوگرافیا", "زمانی هۆڵەندی"] : ["Auto's", "Wetenschap", "Geografie", "Nederlandse Taal"];
+let html = `<div class="hero-card"><h2>${currentLang === "ku" ? "لۆبی ژوور" : "Lobby"}: ${currentRoom.roomCode}</h2>
+<div class="room-code">${currentRoom.roomCode}</div>
+<div><strong>${currentLang === "ku" ? "بابەت هەڵبژێرە" : "Kies onderwerp"}</strong></div>
+<div style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin:1rem 0;">`;
+topicOptions.forEach(t => {
+html += `<button class="btn topic-select" data-topic="${t}">${t}</button>`;
+});
+html += `</div><div class="players-panel"><h3>👥 ${currentLang === "ku" ? "یاریزانان" : "Spelers"}</h3><div id="playersList">${currentRoom.players.map(p => `<div class="player-card">${p} ${p === currentRoom.host ? "👑" : ""}</div>`).join("")}</div>`;
+html += `<div class="chat-panel" style="margin-top:1rem;"><input type="text" id="chatInput" placeholder="${currentLang === "ku" ? "پەیام..." : "Bericht..."}" style="width:100%; padding:0.5rem;"><button id="sendChatBtn">📨</button><div id="chatMsgs" style="height:100px; overflow:auto;"></div></div>`;
+if(isHost && !currentRoom.gameStarted) html += `<button id="startGameBtn" class="btn btn-primary" style="margin-top:1rem;">🚀 ${currentLang === "ku" ? "دەستپێکردنی یاری" : "Start spel"}</button>`;
+html += `</div>`;
+lobbyDivContent.innerHTML = html;
+document.querySelectorAll(".topic-select").forEach(btn => {
+btn.onclick = () => { if(isHost) { selectedTopic = btn.dataset.topic; currentRoom.topic = selectedTopic; renderLobby(); } };
+});
+if(isHost) document.getElementById("startGameBtn")?.addEventListener("click", startGame);
+document.getElementById("sendChatBtn")?.addEventListener("click", () => { let inp = document.getElementById("chatInput"); if(inp.value) chatMessages.push(`${myPlayerName}: ${inp.value}`); renderLobby(); });
+}
+
+function startGame() {
+if(!currentRoom.topic) { alert(currentLang === "ku" ? "تکایە بابەتێک هەڵبژێرە!" : "Kies een onderwerp!"); return; }
+const topicKey = currentLang === "ku" ? currentRoom.topic : (currentRoom.topic === "Auto's" ? "سەیارەکان" : (currentRoom.topic === "Wetenschap" ? "زانست" : (currentRoom.topic === "Geografie" ? "جوگرافیا" : "زمانی هۆڵەندی")));
+const qSet = QUESTIONS_DB[currentLang][topicKey] || QUESTIONS_DB["ku"]["سەیارەکان"];
+activeQuestions = qSet.map((q,i) => ({ ...q }));
+currentRoom.gameStarted = true;
+currentRoom.currentQuestionIndex = 0;
+currentRoom.scores = {};
+currentRoom.players.forEach(p => currentRoom.scores[p] = 0);
+setScreen("game");
+}
+
+function renderGame() {
+if(!activeQuestions.length || currentRoom.currentQuestionIndex >= activeQuestions.length) { endGame(); return; }
+const q = activeQuestions[currentRoom.currentQuestionIndex];
+const container = document.getElementById("gameContainer");
+if(!container) return;
+let html = `<div class="scoreboard"><h3>🏆 ${currentLang === "ku" ? "خاڵەکان" : "Scores"}</h3>`;
+for(let p of currentRoom.players) html += `<div>${p}: ${currentRoom.scores[p] || 0}</div>`;
+html += `</div><div class="question-text">${q.text}</div><div class="answers-grid" id="answersGrid">`;
+q.options.forEach((opt, idx) => {
+html += `<div class="answer-btn" data-opt-index="${idx}">${String.fromCharCode(65+idx)}. ${opt}</div>`;
+});
+html += `</div><div id="timerMsg" style="text-align:center; margin-top:1rem;">⏱️ ${currentLang === "ku" ? "کات" : "Tijd"} 15s</div>`;
+container.innerHTML = html;
+let answered = false;
+const timeLimit = 15;
+let timeLeft = timeLimit;
+const timerEl = document.getElementById("timerMsg");
+const timerInterval = setInterval(() => {
+if(!timerEl) return clearInterval(timerInterval);
+timeLeft--;
+timerEl.innerText = `⏱️ ${timeLeft}s`;
+if(timeLeft <= 0 && !answered) {
+clearInterval(timerInterval);
+nextQuestion();
+}
+}, 1000);
+document.querySelectorAll(".answer-btn").forEach(btn => {
+btn.onclick = (e) => {
+if(answered) return;
+answered = true;
+clearInterval(timerInterval);
+const selected = parseInt(btn.dataset.optIndex);
+const isCorrect = (selected === q.correct);
+if(isCorrect) {
+let points = Math.max(1, Math.floor(timeLeft/2)+5);
+currentRoom.scores[myPlayerName] = (currentRoom.scores[myPlayerName] || 0) + points;
+btn.classList.add("correct-highlight");
+} else {
+btn.classList.add("wrong-highlight");
+document.querySelectorAll(".answer-btn")[q.correct]?.classList.add("correct-highlight");
+}
+setTimeout(() => { nextQuestion(); }, 1200);
+};
+});
+window.nextQuestion = () => {
+currentRoom.currentQuestionIndex++;
+renderGame();
+};
+}
+
+function endGame() {
+const sorted = Object.entries(currentRoom.scores).sort((a,b)=>b[1]-a[1]);
+const podiumData = sorted.slice(0,3);
+currentRoom.gameStarted = false;
+renderPodiumFinal(podiumData);
+setScreen("podium");
+}
+
+function renderPodiumFinal(scoresArr) {
+const podiumDivInner = document.getElementById("podiumContainer");
+podiumDivInner.innerHTML = `<h2>🏅 ${currentLang === "ku" ? "پۆدیۆمی ڕێزلێنان" : "Erepodium"} 🏅</h2><div class="podium">
+${scoresArr[0] ? `<div class="podium-item first">🥇 ${scoresArr[0][0]}<br>${scoresArr[0][1]} pts</div>` : ""}
+${scoresArr[1] ? `<div class="podium-item second">🥈 ${scoresArr[1][0]}<br>${scoresArr[1][1]} pts</div>` : ""}
+${scoresArr[2] ? `<div class="podium-item third">🥉 ${scoresArr[2][0]}<br>${scoresArr[2][1]} pts</div>` : ""}
+</div>`;
+}
+
+function renderPodium() {}
+
+document.getElementById("createRoomBtn").onclick = () => {
+myPlayerName = document.getElementById("playerNameInput").value.trim();
+if(!myPlayerName) { alert("ناوێک بنووسە"); return; }
+const code = "KRD-" + Math.floor(1000+Math.random()*9000);
+currentRoom = { roomCode: code, topic: null, players: [myPlayerName], host: myPlayerName, gameStarted: false, currentQuestionIndex:0, scores: {}, answersTimestamps:{} };
+isHost = true;
+setScreen("lobby");
+renderLobby();
+};
+document.getElementById("joinRoomBtn").onclick = () => {
+document.getElementById("joinSection").classList.toggle("hidden");
+};
+document.getElementById("submitJoinBtn").onclick = () => {
+let code = document.getElementById("roomCodeInput").value.trim().toUpperCase();
+myPlayerName = document.getElementById("playerNameInput").value.trim();
+if(!myPlayerName || !code) return;
+currentRoom = { roomCode: code, topic: "سەیارەکان", players: [currentRoom?.players?.[0] || "Gast1", myPlayerName], host: currentRoom?.host || "Gast1", gameStarted: false, scores: {}, currentQuestionIndex:0 };
+isHost = false;
+setScreen("lobby");
+renderLobby();
+};
+document.getElementById("backToLobbyBtn")?.addEventListener("click", () => { setScreen("lobby"); renderLobby(); });
+langBtns.forEach(btn => {
+btn.onclick = () => {
+langBtns.forEach(b=>b.classList.remove("active"));
+btn.classList.add("active");
+currentLang = btn.dataset.lang;
+updateUITexts();
+};
+});
+renderEntry();
+setScreen("entry");
+
+// ============================================================
+// EXTRA SOCKET.IO CODE (ALLEEN TOEGEVOEGD, NIKS VERWIJDERD)
+// ============================================================
+const socket = io();
+
+// Functies overschrijven zodat ze met de server werken
+const originalStartGame = startGame;
+const originalRenderGame = renderGame;
+const originalEndGame = endGame;
+
+// Nieuwe startGame die socket gebruikt
+window.startGame = function() {
+    if(!currentRoom.topic) {
+        alert(currentLang === "ku" ? "تکایە بابەتێک هەڵبژێرە!" : "Kies een onderwerp!");
+        return;
+    }
+    socket.emit('startGame', { roomCode: currentRoom.roomCode });
+};
+
+// Nieuwe renderGame die wacht op server vragen
+window.renderGame = function() {
+    // Wordt aangestuurd via socket events
+};
+
+// Nieuwe endGame
+window.endGame = function() {
+    // Wordt via socket afgehandeld
+};
+
+// Socket event handlers
+socket.on('connect', () => {
+    console.log('Verbonden met server');
+});
+
+// Kamer aanmaken via socket
+document.getElementById("createRoomBtn").onclick = () => {
+    myPlayerName = document.getElementById("playerNameInput").value.trim();
+    if(!myPlayerName) { alert("ناوێک بنووسە"); return; }
+    socket.emit('createRoom', { playerName: myPlayerName, lang: currentLang }, (response) => {
+        if(response.success) {
+            currentRoom.roomCode = response.roomCode;
+            currentRoom.host = myPlayerName;
+            currentRoom.players = [myPlayerName];
+            currentRoom.gameStarted = false;
+            isHost = true;
+            setScreen("lobby");
+            renderLobby();
+        } else {
+            alert(response.error);
+        }
+    });
+};
+
+// Join kamer via socket
+document.getElementById("submitJoinBtn").onclick = () => {
+    let code = document.getElementById("roomCodeInput").value.trim().toUpperCase();
+    myPlayerName = document.getElementById("playerNameInput").value.trim();
+    if(!myPlayerName || !code) return;
+    socket.emit('joinRoom', { roomCode: code, playerName: myPlayerName }, (response) => {
+        if(response.success) {
+            currentRoom.roomCode = code;
+            currentRoom.host = response.host;
+            currentRoom.players = [myPlayerName];
+            currentRoom.gameStarted = false;
+            isHost = false;
+            setScreen("lobby");
+            renderLobby();
+        } else {
+            alert(response.error);
+        }
+    });
+};
+
+// Topic select via socket
+window.selectTopicViaSocket = (topicKey) => {
+    if(isHost) {
+        socket.emit('selectTopic', { roomCode: currentRoom.roomCode, topicKey });
+    }
+};
+
+// Vervang topic select knoppen in lobby
+function renderLobbyWithSocket() {
+    const lobbyDivContent = document.getElementById("lobbyDynamic");
+    if(!lobbyDivContent) return;
+    const topicOptions = currentLang === "ku" ? ["سەیارەکان", "زانست", "جوگرافیا", "زمانی هۆڵەندی"] : ["Auto's", "Wetenschap", "Geografie", "Nederlandse Taal"];
+    let html = `<div class="hero-card"><h2>${currentLang === "ku" ? "لۆبی ژوور" : "Lobby"}: ${currentRoom.roomCode}</h2>
+    <div class="room-code">${currentRoom.roomCode}</div>
+    <div><strong>${currentLang === "ku" ? "بابەت هەڵبژێرە" : "Kies onderwerp"}</strong></div>
+    <div style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin:1rem 0;">`;
+    topicOptions.forEach(t => {
+        html += `<button class="btn topic-select-socket" data-topic="${t}">${t}</button>`;
+    });
+    html += `</div><div class="players-panel"><h3>👥 ${currentLang === "ku" ? "یاریزانان" : "Spelers"}</h3><div id="playersList">${currentRoom.players.map(p => `<div class="player-card">${p} ${p === currentRoom.host ? "👑" : ""}</div>`).join("")}</div>`;
+    html += `<div class="chat-panel" style="margin-top:1rem;"><input type="text" id="chatInput" placeholder="${currentLang === "ku" ? "پەیام..." : "Bericht..."}" style="width:100%; padding:0.5rem;"><button id="sendChatBtnSocket">📨</button><div id="chatMsgs" style="height:100px; overflow:auto;"></div></div>`;
+    if(isHost && !currentRoom.gameStarted) html += `<button id="startGameBtnSocket" class="btn btn-primary" style="margin-top:1rem;">🚀 ${currentLang === "ku" ? "دەستپێکردنی یاری" : "Start spel"}</button>`;
+    html += `</div>`;
+    lobbyDivContent.innerHTML = html;
+    
+    document.querySelectorAll(".topic-select-socket").forEach(btn => {
+        btn.onclick = () => { if(isHost) socket.emit('selectTopic', { roomCode: currentRoom.roomCode, topicKey: btn.dataset.topic }); };
+    });
+    if(isHost) document.getElementById("startGameBtnSocket")?.addEventListener("click", () => {
+        socket.emit('startGame', { roomCode: currentRoom.roomCode });
+    });
+    document.getElementById("sendChatBtnSocket")?.addEventListener("click", () => {
+        let inp = document.getElementById("chatInput");
+        if(inp.value) {
+            socket.emit('chatMessage', { roomCode: currentRoom.roomCode, message: inp.value });
+            inp.value = '';
+        }
+    });
+}
+
+// Overschrijf renderLobby met de socket versie
+const originalRenderLobby = renderLobby;
+renderLobby = renderLobbyWithSocket;
+
+// Socket events van server
+socket.on('roomUpdate', (data) => {
+    currentRoom.players = data.players;
+    currentRoom.host = data.host;
+    currentRoom.gameStarted = data.gameStarted;
+    if(currentScreen === 'lobby') renderLobby();
+});
+
+socket.on('topicSelected', (data) => {
+    currentRoom.topic = data.topic;
+    if(currentScreen === 'lobby') renderLobby();
+});
+
+socket.on('gameStarting', () => {
+    currentRoom.gameStarted = true;
+    currentRoom.currentQuestionIndex = 0;
+    currentRoom.scores = {};
+    currentRoom.players.forEach(p => currentRoom.scores[p] = 0);
+    setScreen('game');
+});
+
+socket.on('newQuestion', (q) => {
+    currentRoom.currentQuestionIndex = q.index;
+    // Sla de vraag op in activeQuestions
+    activeQuestions[q.index] = { text: q.text, options: q.options, correct: null };
+    if(currentScreen === 'game') {
+        renderGameFromSocket(q);
+    }
+});
+
+function renderGameFromSocket(q) {
+    const container = document.getElementById("gameContainer");
+    if(!container) return;
+    let html = `<div class="scoreboard"><h3>🏆 ${currentLang === "ku" ? "خاڵەکان" : "Scores"}</h3>`;
+    for(let p of currentRoom.players) html += `<div>${p}: ${currentRoom.scores[p] || 0}</div>`;
+    html += `</div><div class="question-text">${q.text}</div><div class="answers-grid" id="answersGrid">`;
+    q.options.forEach((opt, idx) => {
+        html += `<div class="answer-btn" data-opt-index="${idx}">${String.fromCharCode(65+idx)}. ${opt}</div>`;
+    });
+    html += `</div><div id="timerMsg" style="text-align:center; margin-top:1rem;">⏱️ ${currentLang === "ku" ? "کات" : "Tijd"} 15s</div>`;
+    container.innerHTML = html;
+    
+    let answered = false;
+    let timeLeft = 15;
+    const timerEl = document.getElementById("timerMsg");
+    const interval = setInterval(() => {
+        timeLeft--;
+        if(timerEl) timerEl.innerText = `⏱️ ${timeLeft}s`;
+        if(timeLeft <= 0 && !answered) {
+            clearInterval(interval);
+        }
+    }, 1000);
+    
+    document.querySelectorAll(".answer-btn").forEach(btn => {
+        btn.onclick = () => {
+            if(answered) return;
+            answered = true;
+            clearInterval(interval);
+            const selected = parseInt(btn.dataset.optIndex);
+            const timeSpent = (15 - timeLeft) * 1000;
+            socket.emit('submitAnswer', { roomCode: currentRoom.roomCode, answerIndex: selected, timeSpent }, (res) => {
+                if(res && res.success) {
+                    if(res.isCorrect) btn.classList.add("correct-highlight");
+                    else {
+                        btn.classList.add("wrong-highlight");
+                        // Toon het juiste antwoord (indien bekend)
+                    }
+                }
+            });
+        };
+    });
+}
+
+socket.on('scoreUpdate', (data) => {
+    currentRoom.scores = data.scores;
+    if(currentScreen === 'game') {
+        // Update scores in game scherm
+        const scoreDiv = document.querySelector("#gameContainer .scoreboard");
+        if(scoreDiv) {
+            let html = `<h3>🏆 ${currentLang === "ku" ? "خاڵەکان" : "Scores"}</h3>`;
+            for(let p of currentRoom.players) html += `<div>${p}: ${currentRoom.scores[p] || 0}</div>`;
+            scoreDiv.innerHTML = html;
+        }
+    }
+});
+
+socket.on('gameEnd', (data) => {
+    const podiumArr = data.podium.map(p => [p.name, p.score]);
+    renderPodiumFinal(podiumArr);
+    setScreen('podium');
+});
+
+socket.on('chatMessage', (msg) => {
+    chatMessages.push(msg);
+    if(currentScreen === 'lobby') renderLobby();
+});
+</script>
+</body>
+</html>

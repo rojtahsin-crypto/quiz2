@@ -1,6 +1,306 @@
 <!DOCTYPE html>
 <html lang="ku">
 <head>
+/* style.css - Roj Hewar Quiz Game */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none; /* Voorkomt tekstselectie tijdens het spel */
+}
+
+body {
+  background: linear-gradient(145deg, #0a0f1e 0%, #0c1222 100%);
+  font-family: 'Segoe UI', 'Poppins', 'Roboto', system-ui, -apple-system, 'Noto Sans Arabic', 'Noto Sans Kurdish', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Hoofdcontainer */
+.app-container {
+  max-width: 1400px;
+  width: 100%;
+  background: rgba(18, 25, 45, 0.7);
+  backdrop-filter: blur(12px);
+  border-radius: 3rem;
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  background: rgba(10, 14, 23, 0.8);
+  border-bottom: 1px solid rgba(255,215,0,0.3);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.flag-container {
+  display: flex;
+  gap: 8px;
+}
+
+.flag {
+  width: 42px;
+  height: 28px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease;
+}
+
+.flag-kurdistan {
+  background: linear-gradient(135deg, #E30A17 0%, #E30A17 33%, #FFFFFF 33%, #FFFFFF 66%, #009639 66%, #009639 100%);
+  position: relative;
+}
+.flag-kurdistan::after {
+  content: "☀️";
+  position: absolute;
+  font-size: 14px;
+  top: 4px;
+  left: 12px;
+  color: #FFD700;
+  text-shadow: 0 0 2px black;
+}
+
+.flag-belgium {
+  background: linear-gradient(90deg, #000000 0%, #000000 33%, #FDDA24 33%, #FDDA24 66%, #EF3340 66%, #EF3340 100%);
+}
+
+.brand {
+  font-size: 1.7rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #F9E0A0, #E0B354);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.5px;
+}
+
+.lang-switch {
+  display: flex;
+  gap: 12px;
+  background: #1e2a3a;
+  padding: 6px 12px;
+  border-radius: 60px;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 6px 16px;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: #ccc;
+}
+
+.lang-btn.active {
+  background: #FFB347;
+  color: #0a0f1e;
+  box-shadow: 0 2px 8px rgba(255,180,70,0.4);
+}
+
+/* Schermen */
+.screen {
+  padding: 2rem;
+  transition: 0.2s;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Kaarten en formulieren */
+.hero-card {
+  background: rgba(255,255,255,0.05);
+  border-radius: 2rem;
+  padding: 2.5rem;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  backdrop-filter: blur(4px);
+}
+
+.input-field {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 60px;
+  border: none;
+  background: #0f172a;
+  color: white;
+  text-align: center;
+  margin: 1rem 0;
+  outline: none;
+  border: 1px solid #334155;
+}
+
+.btn {
+  background: linear-gradient(95deg, #3b82f6, #2563eb);
+  border: none;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border-radius: 60px;
+  color: white;
+  margin: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.btn-primary {
+  background: linear-gradient(95deg, #a855f7, #7c3aed);
+  box-shadow: 0 4px 14px rgba(168,85,247,0.4);
+}
+
+.btn-success {
+  background: linear-gradient(95deg, #10b981, #059669);
+}
+
+.room-code {
+  font-size: 2.2rem;
+  letter-spacing: 4px;
+  background: #00000055;
+  padding: 0.5rem;
+  border-radius: 60px;
+  display: inline-block;
+  margin: 1rem 0;
+}
+
+/* Lobby en spelers */
+.lobby-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.players-panel {
+  flex: 1;
+  background: #0f172a99;
+  border-radius: 2rem;
+  padding: 1.5rem;
+}
+
+.chat-panel {
+  flex: 0.8;
+  background: #0f172a99;
+  border-radius: 2rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.player-card {
+  background: #1e293b;
+  margin: 0.5rem 0;
+  padding: 0.8rem;
+  border-radius: 60px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Spelgebied */
+.quiz-area {
+  background: #0f172a;
+  border-radius: 2rem;
+  padding: 1.8rem;
+}
+
+.question-text {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.answers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.answer-btn {
+  background: #1e293b;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.07s linear;
+  text-align: center;
+  font-weight: 500;
+  border: 1px solid #475569;
+}
+
+.scoreboard {
+  background: #02061780;
+  border-radius: 1.5rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Podium */
+.podium {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2rem;
+  margin: 3rem 0;
+}
+
+.podium-item {
+  text-align: center;
+  background: #1e293b;
+  border-radius: 1.5rem 1.5rem 0 0;
+  padding: 1rem;
+  width: 150px;
+}
+
+.first {
+  background: radial-gradient(circle, #ffd966, #b8860b);
+  height: 180px;
+  padding-top: 2rem;
+}
+.second {
+  background: #c0c0c0;
+  height: 130px;
+}
+.third {
+  background: #cd7f32;
+  height: 100px;
+}
+
+/* Highlights */
+.correct-highlight {
+  background: #10b981 !important;
+  box-shadow: 0 0 15px #10b981;
+}
+.wrong-highlight {
+  background: #ef4444 !important;
+}
+
+/* Animatie */
+@keyframes bounce {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.03); }
+}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>ڕۆژ حەوار - یاری زانستی پێشکەوتوو</title>
@@ -783,306 +1083,7 @@ socket.on('gameEnd', (data) => {
     renderPodiumFinal(podiumArr);
     setScreen('podium');
 });
-/* style.css - Roj Hewar Quiz Game */
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  user-select: none; /* Voorkomt tekstselectie tijdens het spel */
-}
-
-body {
-  background: linear-gradient(145deg, #0a0f1e 0%, #0c1222 100%);
-  font-family: 'Segoe UI', 'Poppins', 'Roboto', system-ui, -apple-system, 'Noto Sans Arabic', 'Noto Sans Kurdish', sans-serif;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-/* Hoofdcontainer */
-.app-container {
-  max-width: 1400px;
-  width: 100%;
-  background: rgba(18, 25, 45, 0.7);
-  backdrop-filter: blur(12px);
-  border-radius: 3rem;
-  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
-  overflow: hidden;
-  transition: all 0.3s ease;
-}
-
-/* Header */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 2rem;
-  background: rgba(10, 14, 23, 0.8);
-  border-bottom: 1px solid rgba(255,215,0,0.3);
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.logo-area {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.flag-container {
-  display: flex;
-  gap: 8px;
-}
-
-.flag {
-  width: 42px;
-  height: 28px;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-  transition: transform 0.2s ease;
-}
-
-.flag-kurdistan {
-  background: linear-gradient(135deg, #E30A17 0%, #E30A17 33%, #FFFFFF 33%, #FFFFFF 66%, #009639 66%, #009639 100%);
-  position: relative;
-}
-.flag-kurdistan::after {
-  content: "☀️";
-  position: absolute;
-  font-size: 14px;
-  top: 4px;
-  left: 12px;
-  color: #FFD700;
-  text-shadow: 0 0 2px black;
-}
-
-.flag-belgium {
-  background: linear-gradient(90deg, #000000 0%, #000000 33%, #FDDA24 33%, #FDDA24 66%, #EF3340 66%, #EF3340 100%);
-}
-
-.brand {
-  font-size: 1.7rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, #F9E0A0, #E0B354);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  letter-spacing: -0.5px;
-}
-
-.lang-switch {
-  display: flex;
-  gap: 12px;
-  background: #1e2a3a;
-  padding: 6px 12px;
-  border-radius: 60px;
-}
-
-.lang-btn {
-  background: none;
-  border: none;
-  font-weight: bold;
-  font-size: 1rem;
-  padding: 6px 16px;
-  border-radius: 40px;
-  cursor: pointer;
-  transition: all 0.2s;
-  color: #ccc;
-}
-
-.lang-btn.active {
-  background: #FFB347;
-  color: #0a0f1e;
-  box-shadow: 0 2px 8px rgba(255,180,70,0.4);
-}
-
-/* Schermen */
-.screen {
-  padding: 2rem;
-  transition: 0.2s;
-}
-
-.hidden {
-  display: none !important;
-}
-
-/* Kaarten en formulieren */
-.hero-card {
-  background: rgba(255,255,255,0.05);
-  border-radius: 2rem;
-  padding: 2.5rem;
-  text-align: center;
-  max-width: 600px;
-  margin: 0 auto;
-  backdrop-filter: blur(4px);
-}
-
-.input-field {
-  width: 100%;
-  padding: 1rem 1.5rem;
-  font-size: 1.2rem;
-  border-radius: 60px;
-  border: none;
-  background: #0f172a;
-  color: white;
-  text-align: center;
-  margin: 1rem 0;
-  outline: none;
-  border: 1px solid #334155;
-}
-
-.btn {
-  background: linear-gradient(95deg, #3b82f6, #2563eb);
-  border: none;
-  padding: 12px 28px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 60px;
-  color: white;
-  margin: 0.5rem;
-  cursor: pointer;
-  transition: transform 0.1s, box-shadow 0.2s;
-}
-
-.btn-primary {
-  background: linear-gradient(95deg, #a855f7, #7c3aed);
-  box-shadow: 0 4px 14px rgba(168,85,247,0.4);
-}
-
-.btn-success {
-  background: linear-gradient(95deg, #10b981, #059669);
-}
-
-.room-code {
-  font-size: 2.2rem;
-  letter-spacing: 4px;
-  background: #00000055;
-  padding: 0.5rem;
-  border-radius: 60px;
-  display: inline-block;
-  margin: 1rem 0;
-}
-
-/* Lobby en spelers */
-.lobby-layout {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.players-panel {
-  flex: 1;
-  background: #0f172a99;
-  border-radius: 2rem;
-  padding: 1.5rem;
-}
-
-.chat-panel {
-  flex: 0.8;
-  background: #0f172a99;
-  border-radius: 2rem;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.player-card {
-  background: #1e293b;
-  margin: 0.5rem 0;
-  padding: 0.8rem;
-  border-radius: 60px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-/* Spelgebied */
-.quiz-area {
-  background: #0f172a;
-  border-radius: 2rem;
-  padding: 1.8rem;
-}
-
-.question-text {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-
-.answers-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
-}
-
-.answer-btn {
-  background: #1e293b;
-  padding: 1rem;
-  border-radius: 1.5rem;
-  font-size: 1.1rem;
-  cursor: pointer;
-  transition: 0.07s linear;
-  text-align: center;
-  font-weight: 500;
-  border: 1px solid #475569;
-}
-
-.scoreboard {
-  background: #02061780;
-  border-radius: 1.5rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
-}
-
-/* Podium */
-.podium {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 2rem;
-  margin: 3rem 0;
-}
-
-.podium-item {
-  text-align: center;
-  background: #1e293b;
-  border-radius: 1.5rem 1.5rem 0 0;
-  padding: 1rem;
-  width: 150px;
-}
-
-.first {
-  background: radial-gradient(circle, #ffd966, #b8860b);
-  height: 180px;
-  padding-top: 2rem;
-}
-.second {
-  background: #c0c0c0;
-  height: 130px;
-}
-.third {
-  background: #cd7f32;
-  height: 100px;
-}
-
-/* Highlights */
-.correct-highlight {
-  background: #10b981 !important;
-  box-shadow: 0 0 15px #10b981;
-}
-.wrong-highlight {
-  background: #ef4444 !important;
-}
-
-/* Animatie */
-@keyframes bounce {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.03); }
-}
 socket.on('chatMessage', (msg) => {
     chatMessages.push(msg);
     if(currentScreen === 'lobby') renderLobby();

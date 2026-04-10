@@ -1,0 +1,221 @@
+{
+  "metadata": {
+    "projectName": "ڕۆژ حەوار - یاری زانستی فرە-بابەت",
+    "version": "3.0.0",
+    "lastDatabaseUpdate": "2026-04-09T22:30:00.000Z",
+    "supportedLanguages": ["ku", "nl"],
+    "totalTopics": 4,
+    "totalQuestionsPerTopic": 10,
+    "algorithmVersion": "v2.1 (weighted scoring with time bonus)",
+    "developer": "ڕۆژ حەوار (Roj Hewar)",
+    "description": "ئەم بنکەدراوەیە هەموو پرسیارەکانی یاریەکە لەخۆدەگرێت، هاوپەیمان لەگەڵ ڕیزبەندی یاریزانان، مێژووی یارییەکان، ئاستەکان، و ڕێکخستنی ژوورەکان."
+  },
+  "topics": {
+    "ku": {
+      "سەیارەکان": {
+        "displayName": "🚗 سەیارەکان (ئاستی پێشکەوتوو)",
+        "icon": "🏎️",
+        "difficulty": 8,
+        "timePerQuestion": 15,
+        "questions": [
+          { "id": "q_auto_001", "text": "بزوێنەری وانکڵ (Wankel) لە کام سەیارەی بەناوبانگدا بەکارهاتووە؟", "options": ["پۆرشە 911", "مازدا RX-7", "تۆیۆتا سوپرا", "دۆدج چاڕجەر"], "correct": 1, "explanation": "مازدا RX-7 بە بزوێنەری وانکڵ (ڕۆتەری) ناسراوە، نەک پۆرشە کە بە بۆکسەر ناسراوە." },
+          { "id": "q_auto_002", "text": "یەکەم ئۆتۆمبێلی بەرهەمهێنراو بە توربۆ لە لایەن کێوە؟", "options": ["Oldsmobile Jetfire", "BMW 2002 Turbo", "Saab 99 Turbo", "پۆرشە 930"], "correct": 0, "explanation": "Oldsmobile Jetfire لە ساڵی 1962 یەکەم بوو، بەڵام BMW 2002 Turbo زیاتر ناسراوە." },
+          { "id": "q_auto_003", "text": "ناوی تەواوی BMW چییە؟", "options": ["Bayerische Motoren Werke", "Bayerische Motor Wagen", "Bayerisches Auto", "Bavarian Motor Cars"], "correct": 0, "explanation": "Bayerische Motoren Werke بە واتای 'کارگەی بزوێنەری باڤاریا' دێت." },
+          { "id": "q_auto_004", "text": "کام سەیارە یەکەمجار سنووری ٤٠٠ کم/سەعاتی شکاند؟", "options": ["Bugatti Veyron", "Koenigsegg Agera", "SSC Ultimate Aero", "Hennessey Venom GT"], "correct": 0, "explanation": "Bugatti Veyron لە ساڵی 2005دا بە فەرمی سنووری 400 کم/س شکاند." },
+          { "id": "q_auto_005", "text": "LSD لە سیستەمی ئۆتۆمبێلدا چی دەکات؟", "options": ["ڕێگری لە خلیسکێنەی چرخ دەکات", "بزوێنەر زیاتر هێز دەدات", "وەرگرێکی خێراتر", "کۆڵدکەری ئاویل"], "correct": 0, "explanation": "Limited Slip Differential ڕێگری لە خلیسکێنەی چرخی بێ باری دەکات." },
+          { "id": "q_auto_006", "text": "کام سیستەم یەکەم جار لە سەیارەی F1دا هاتە ناوەوە؟", "options": ["KERS (ڕێژەری وزە)", "TCS (کۆنترۆڵی ڕاکێشان)", "بەرگەی ئاسمانی Active", "ڕێکخەری ھەوای متغیر"], "correct": 0, "explanation": "KERS لە ساڵی 2009ەوە لە F1 بەکارهاتووە." },
+          { "id": "q_auto_007", "text": "کام بزوێنەر بە 'بۆکسەر' ناسراوە؟", "options": ["بزوێنەری ھێڵی", "بزوێنەری ڤی (V)", "بزوێنەری بەرامبەر (Opposed)", "بزوێنەری ڕۆتەری"], "correct": 2, "explanation": "بزوێنەری بەرامبەر (بۆکسەر) پیستۆنەکان بە ڕێکەوتی ئاسۆیی جوڵە دەکەن." },
+          { "id": "q_auto_008", "text": "ناوی بزوێنەری ھایبرید کە لە تۆیۆتا پریوسدا بەکارهاتووە چییە؟", "options": ["Hybrid Synergy Drive", "E-Four", "VTEC", "Quattro"], "correct": 0, "explanation": "Hybrid Synergy Drive سیستەمی تایبەتی تۆیۆتایە." },
+          { "id": "q_auto_009", "text": "کام وڵات خاوەنی براندی 'Koenigsegg'ە؟", "options": ["نەرویج", "سوید", "فینلاند", "دانمارک"], "correct": 1, "explanation": "Koenigsegg لە سویدە و ھێزترین سەیارە جیھانییەکانی دروست دەکات." },
+          { "id": "q_auto_010", "text": "یەکەم سەیارەی بەرھەمھێنراو بە شێوەی بازرگانی کە ھێزی کارەبای تەواوی ھەبوو کام بوو؟", "options": ["Tesla Roadster (2008)", "Nissan Leaf", "GM EV1", "BMW i3"], "correct": 2, "explanation": "GM EV1 لە ساڵانی 1996-1999 بە کرێ درا، بەڵام دواتر ھەڵوەشایەوە." }
+        ]
+      },
+      "زانست": {
+        "displayName": "🧪 زانست (ئاستی پێشکەوتوو)",
+        "icon": "🔬",
+        "difficulty": 9,
+        "timePerQuestion": 20,
+        "questions": [
+          { "id": "q_sci_001", "text": "سفری ڕەها (Absolute Zero) چەند پلەی سیلیزییە؟", "options": ["0°C", "-273.15°C", "-459.67°F", "-100°C"], "correct": 1, "explanation": "سفری ڕەها -273.15 پلەی سیلیزی یان 0 کێلڤینە." },
+          { "id": "q_sci_002", "text": "کام تەنۆلکە کارگەی نەرێنی هەیە؟", "options": ["پڕۆتۆن", "نیوترۆن", "ئەلێکترۆن", "مۆلێکول"], "correct": 2, "explanation": "ئەلێکترۆن بارگەی نەرێنی هەیە، پڕۆتۆن ئەرێنی." },
+          { "id": "q_sci_003", "text": "وێستگەی وزەی خانە (Powerhouse) پێی دەڵێن؟", "options": ["نایوکلەس", "ریبۆسۆم", "مایتۆکۆندریا", "لایزۆسۆم"], "correct": 2, "explanation": "مایتۆکۆندریا ئەی تی پی (ATP) بەرهەم دێنێت، وەک وێستگەی وزە." },
+          { "id": "q_sci_004", "text": "باوکی بۆماوەزانی کێیە؟", "options": ["ئەلێکساندر فلیمینگ", "ئایزاک نیوتن", "جێگریگۆر مێندڵ", "لوی پاستێر"], "correct": 2, "explanation": "مێندڵ یاساکانی بۆماوەزانی بە ناو پەڵەی گارنیزەکان دۆزیەوە." },
+          { "id": "q_sci_005", "text": "باوترین توخم لە گەردووندا چییە؟", "options": ["هایدرۆجین", "هیلیۆم", "ئۆکسجین", "کاربۆن"], "correct": 0, "explanation": "هایدرۆجین نزیکەی 75%ی بارستەی گەردوون پێک دەهێنێت." },
+          { "id": "q_sci_006", "text": "کام لەم شتانە نەخشەکەری بۆماوەیی (DNA) نییە؟", "options": ["ئەدێنین", "تایمین", "یوراسیل", "سایتۆسین"], "correct": 2, "explanation": "یوراسیل لە RNAدا هەیە، نەک لە DNAدا (لە DNAدا تایمین هەیە)." },
+          { "id": "q_sci_007", "text": "کام زاناکە یاساکانی جوڵەی هەسارەکانی دۆزیەوە؟", "options": ["گالیلێو", "کۆپێرنیکوس", "یۆهانس کێپلەر", "تیکۆ براهێ"], "correct": 2, "explanation": "کێپلەر سێ یاساکەی هەسارەیی بڵاوکردەوە." },
+          { "id": "q_sci_008", "text": "کام پڕۆسە کاربۆنی دی ئۆکساید دەکات بە ئۆکسجین؟", "options": ["تەنفەس", "فتۆسنتێز", "فێرمانتاسیۆن", "ئەوپەڕی هەڵمبوون"], "correct": 1, "explanation": "ڕوەکەکان بە فتۆسنتێز CO2 وەردەگرن و O2 دەردەکەن." },
+          { "id": "q_sci_009", "text": "کام شت بە 'بەڵگەی ستیڤن هۆکینگ' ناسراوە؟", "options": ["تەقینەوەی گەورە", "تایبەتمەندی ناوەکی کونە ڕەشەکان", "ڕێگای ھاوکێشەی کوانتەم", "میکانیکی ئاسمانی"], "correct": 1, "explanation": "هۆکینگ سەلماند کە کونە ڕەشەکان تیشکی تایبەتی خۆیان دەردەکەن." },
+          { "id": "q_sci_010", "text": "کام شت ڕێژەی pHی لە 7 کەمترە؟", "options": ["ئاو", "خوێن", "ترش (ئەسید)", "سابوون"], "correct": 2, "explanation": "ترشەکان pHیان <7، ئاو لە 7ە، ئەلکالی >7." }
+        ]
+      },
+      "جوگرافیا": {
+        "displayName": "🌍 جوگرافیا (ئاستی قورس)",
+        "icon": "🗺️",
+        "difficulty": 7,
+        "timePerQuestion": 18,
+        "questions": [
+          { "id": "q_geo_001", "text": "کام وڵات زۆرترین دوورگەی هەیە؟", "options": ["ئیندۆنیزیا", "فینلاند", "سوید", "نەرویج"], "correct": 2, "explanation": "سوید نزیکەی 267,570 دوورگەی هەیە، زۆرتر لە ئیندۆنیزیا." },
+          { "id": "q_geo_002", "text": "پایتەختی کازاخستان لە دوای 2022ەوە چییە؟", "options": ["نورسوڵتان", "ئالماتی", "ئاستانا", "بیسکێک"], "correct": 2, "explanation": "لە ساڵی 2022دا ناوەکە گەڕایەوە بۆ ئاستانا." },
+          { "id": "q_geo_003", "text": "تاڤگەی ئەنجڵ لە کام وڵاتدایە؟", "options": ["بەڕازیل", "ڤەنزوێلا", "زەئیر", "نیوزلەندا"], "correct": 1, "explanation": "تاڤگەی ئەنجڵ بە بەرزی 979 م لە ڤەنزوێلایە." },
+          { "id": "q_geo_004", "text": "کام دەریا زۆرترین ڕێژەی خوێی هەیە؟", "options": ["دەریای مردوو", "دەریای ڕەش", "دەریای چەرمە", "دەریای سپی"], "correct": 0, "explanation": "دەریای مردوو 34.2% خوێی هەیە، زۆرتر لە دەریا ئاسایی." },
+          { "id": "q_geo_005", "text": "کام شار لەسەر دوو کیشوەر کەوتووە؟", "options": ["قاهیرە", "مۆسکۆ", "ئەستەمبوڵ", "دوبەی"], "correct": 2, "explanation": "ئەستەمبوڵ لەسەر ئەوروپا و ئاسیا کەوتووە، بە بۆسفۆروس جیابووەتەوە." },
+          { "id": "q_geo_006", "text": "بەرزترین شاخی جیهان (لە ئاستی دەریاوە) کامەیە؟", "options": ["K2", "ئێڤەرست", "کانگچێنجونگا", "ماکالو"], "correct": 1, "explanation": "ئێڤەرست بە 8,848 م بەرزترینە." },
+          { "id": "q_geo_007", "text": "کام بیابان گەورەترینە لە جیهاندا (بەپێی ڕووبەر)؟", "options": ["گۆبی", "سەحارا", "عەرەبی", "ئەنتارکتیکا"], "correct": 3, "explanation": "بیابانی ئەنتارکتیکا نزیکەی 14.2 ملیۆن کیلۆمەتر چوارگۆشەیە." },
+          { "id": "q_geo_008", "text": "کام ڕووبار درێژترینە لە جیهاندا؟", "options": ["نیل", "ئەمازۆن", "یانگتسی", "میسیسیپی"], "correct": 0, "explanation": "نیل 6,650 کم درێژە، بەڵام ئەمازۆن زیاتر ئاوە." },
+          { "id": "q_geo_009", "text": "کام وڵات بە 'وڵاتی بایەکانی سەد ساڵ' ناسراوە؟", "options": ["ئێرلەندا", "هۆڵەندا", "نیوزلەندا", "چیلی"], "correct": 1, "explanation": "هۆڵەندا بە ئاسک و با و ئاو ناسراوە." },
+          { "id": "q_geo_010", "text": "کام کیشوەر تەنها وڵاتێکی لەسەرە؟", "options": ["ئەمریکا", "ئەفریقا", "ئوسترالیا", "ئەوروپا"], "correct": 2, "explanation": "ئوسترالیا هەردوو وڵات و کیشوەرە." }
+        ]
+      },
+      "زمانی هۆڵەندی": {
+        "displayName": "📚 زمانی هۆڵەندی (ئاستی زۆر قورس)",
+        "icon": "🇳🇱",
+        "difficulty": 10,
+        "timePerQuestion": 25,
+        "questions": [
+          { "id": "q_nl_001", "text": "واتای idiom 'Met de gebakken peren zitten' چییە؟", "options": ["سەرکەوتنی گەورە", "چارەسەری کێشەکانی تر", "پاراستنی پارە", "پێکەنین بە دڵ"], "correct": 1, "explanation": "واتای 'چارەسەری ئەنجامە ناخۆشەکانی کردەوەی خۆت یان کەسی تر'." },
+          { "id": "q_nl_002", "text": "ڕێسای 't kofschip بۆ کاری 'verven' لە ڕابردوودا:", "options": ["verfde", "vervte", "verfde of verfte", "vervende"], "correct": 0, "explanation": "Verv-en: v لە kofschip نییە، بۆیە -de زیاد دەکەین: verfde." },
+          { "id": "q_nl_003", "text": "هەموانای 'aanzienlijk' بریتییە لە:", "options": ["Klein", "Behoorlijk groot", "Moeilijk", "Zeldzaam"], "correct": 1, "explanation": "Aanzienlijk بە واتای 'بەرچاو، زۆر گەورە'." },
+          { "id": "q_nl_004", "text": "دەستەواژەی 'Helaas pindakaas' بۆ چی بەکار دێت؟", "options": ["پیرۆزبایی", "داخەکەم بە شێوەی تەنزئامێز", "سوربوونەوە", "پێرستی خۆراک"], "correct": 1, "explanation": "بە شێوەیەکی ئاسایی بۆ دەربڕینی دڵتەنگی بە نهێنی بەکار دێت." },
+          { "id": "q_nl_005", "text": "کۆی وشەی 'museum' چییە؟", "options": ["museums", "musea", "هەردووکیان ڕاستە", "museum's"], "correct": 2, "explanation": "لە هۆڵەندیدا هەردوو کۆیەک ڕێگەپێدراون." },
+          { "id": "q_nl_006", "text": "واتای 'Gezelligheid' چییە بە کوردی؟", "options": ["تەنهایی", "کێشە", "کەشێکی پڕ لە ئاسوودەیی و کۆمەڵایەتی", "خەم"], "correct": 2, "explanation": "Gezelligheid چەمکێکی کەلتووری هۆڵەندییە بۆ پەیوەندییە خۆشەکان." },
+          { "id": "q_nl_007", "text": "ڕستەی 'Ik heb gisteren een boek gelezen' کام کاتە؟", "options": ["حاڵ", "ڕابردووی نزیک", "ڕابردووی دوور", "داهاتوو"], "correct": 1, "explanation": "gisteren + het voltooid deelwoord: ڕابردووی نزیک." },
+          { "id": "q_nl_008", "text": "کام وشە بە مانای 'پەڕە (ئینتەرنێت)' دێت؟", "options": ["webpagina", "website", "bladzijde", "link"], "correct": 2, "explanation": "Bladzijde بۆ پەڕەی کتێب یان پەڕەی وێب بەکار دێت." },
+          { "id": "q_nl_009", "text": "ڕێسای 'd/t' لە کاری 'worden' لە ڕابردوودا:", "options": ["werdt", "werd", "wordde", "wordte"], "correct": 1, "explanation": "Worden: w+r+d (kofschip): werd (بێ t چونکە d لە kofschipدا نییە)." },
+          { "id": "q_nl_010", "text": "واتای 'Overmorgen':", "options": ["دوێنێ", "سبەینێ", "دوای سبەینێ", "هەفتهی داهاتوو"], "correct": 2, "explanation": "Overmorgen = دوای سبەینێ (ئەمڕۆ+٢)." }
+        ]
+      }
+    },
+    "nl": {
+      "Auto's": {
+        "displayName": "🚗 Auto's (Geavanceerd)",
+        "icon": "🏎️",
+        "difficulty": 8,
+        "timePerQuestion": 15,
+        "questions": [
+          { "id": "q_auto_nl_001", "text": "Welke auto heeft de beroemde Wankelmotor?", "options": ["Porsche 911", "Mazda RX-7", "Toyota Supra", "Dodge Charger"], "correct": 1, "explanation": "Mazda RX-7 staat bekend om zijn rotatiemotor." },
+          { "id": "q_auto_nl_002", "text": "Eerste productieauto met turbo?", "options": ["Oldsmobile Jetfire", "BMW 2002 Turbo", "Saab 99 Turbo", "Porsche 930"], "correct": 0, "explanation": "Oldsmobile Jetfire uit 1962 was de eerste, hoewel BMW meer bekendheid kreeg." },
+          { "id": "q_auto_nl_003", "text": "Waar staat BMW voor?", "options": ["Bayerische Motoren Werke", "Bayerische Motor Wagen", "Bayerisches Auto", "Bavarian Motor Cars"], "correct": 0, "explanation": "Bayerische Motoren Werke = Beierse Motorenfabrieken." },
+          { "id": "q_auto_nl_004", "text": "Welke auto brak als eerste de 400 km/u grens?", "options": ["Bugatti Veyron", "Koenigsegg Agera", "SSC Ultimate Aero", "Hennessey Venom GT"], "correct": 0, "explanation": "Bugatti Veyron in 2005." },
+          { "id": "q_auto_nl_005", "text": "Wat doet LSD in een auto?", "options": ["Beperkt wielslip", "Meer vermogen", "Snellere versnelling", "Koeling"], "correct": 0, "explanation": "Limited Slip Differential vermindert wielslip." },
+          { "id": "q_auto_nl_006", "text": "Welk systeem werd eerst in F1 geïntroduceerd?", "options": ["KERS", "TCS", "Active Suspension", "Variable Intake"], "correct": 0, "explanation": "KERS (Kinetic Energy Recovery System) in 2009." },
+          { "id": "q_auto_nl_007", "text": "Welke motor heet 'Boxermotor'?", "options": ["Lijnmotor", "V-motor", "Tegengestelde motor", "Rotatiemotor"], "correct": 2, "explanation": "Tegengestelde cilinders bewegen horizontaal." },
+          { "id": "q_auto_nl_008", "text": "Naam van Toyota's hybride systeem?", "options": ["Hybrid Synergy Drive", "E-Four", "VTEC", "Quattro"], "correct": 0, "explanation": "Hybrid Synergy Drive is exclusief voor Toyota." },
+          { "id": "q_auto_nl_009", "text": "Welk land produceert Koenigsegg?", "options": ["Noorwegen", "Zweden", "Finland", "Denemarken"], "correct": 1, "explanation": "Koenigsegg is Zweeds." },
+          { "id": "q_auto_nl_010", "text": "Eerste in massa geproduceerde elektrische auto?", "options": ["Tesla Roadster (2008)", "Nissan Leaf", "GM EV1", "BMW i3"], "correct": 2, "explanation": "GM EV1 was er al in 1996, maar werd teruggeroepen." }
+        ]
+      },
+      "Wetenschap": {
+        "displayName": "🧪 Wetenschap (Complex)",
+        "icon": "🔬",
+        "difficulty": 9,
+        "timePerQuestion": 20,
+        "questions": [
+          { "id": "q_sci_nl_001", "text": "Wat is het absolute nulpunt in Celsius?", "options": ["0°C", "-273.15°C", "-459.67°F", "-100°C"], "correct": 1, "explanation": "Absolute nulpunt = -273.15°C = 0 Kelvin." },
+          { "id": "q_sci_nl_002", "text": "Welk deeltje heeft negatieve lading?", "options": ["Proton", "Neutron", "Elektron", "Molecuul"], "correct": 2, "explanation": "Elektron is negatief, proton positief." },
+          { "id": "q_sci_nl_003", "text": "Krachtcentrale van de cel?", "options": ["Nucleus", "Ribosoom", "Mitochondrion", "Lysosoom"], "correct": 2, "explanation": "Mitochondria produceren ATP." },
+          { "id": "q_sci_nl_004", "text": "Wie is vader van de genetica?", "options": ["Fleming", "Newton", "Mendel", "Pasteur"], "correct": 2, "explanation": "Gregor Mendel ontdekte erfelijkheidswetten." },
+          { "id": "q_sci_nl_005", "text": "Meest voorkomende element in het universum?", "options": ["Waterstof", "Helium", "Zuurstof", "Koolstof"], "correct": 0, "explanation": "Waterstof ~75% van de massa." },
+          { "id": "q_sci_nl_006", "text": "Welke stikstofbase komt NIET voor in DNA?", "options": ["Adenine", "Thymine", "Uracil", "Cytosine"], "correct": 2, "explanation": "Uracil zit in RNA, niet in DNA." },
+          { "id": "q_sci_nl_007", "text": "Welke astronoom formuleerde de planetenwetten?", "options": ["Galileo", "Copernicus", "Kepler", "Tycho Brahe"], "correct": 2, "explanation": "Johannes Kepler ontdekte de drie wetten." },
+          { "id": "q_sci_nl_008", "text": "Welk proces zet CO2 om in zuurstof?", "options": ["Ademhaling", "Fotosynthese", "Fermentatie", "Verdamping"], "correct": 1, "explanation": "Planten doen fotosynthese." },
+          { "id": "q_sci_nl_009", "text": "Waar staat 'Hawking-straling' voor?", "options": ["Oerknal", "Zwarte gaten straling", "Kwantummechanica", "Hemelmechanica"], "correct": 1, "explanation": "Stephen Hawking voorspelde dat zwarte gaten straling uitzenden." },
+          { "id": "q_sci_nl_010", "text": "Wat heeft een pH lager dan 7?", "options": ["Water", "Bloed", "Zuur (zuur)", "Zeep"], "correct": 2, "explanation": "Zuren hebben pH < 7." }
+        ]
+      },
+      "Geografie": {
+        "displayName": "🌍 Geografie (Moeilijk)",
+        "icon": "🗺️",
+        "difficulty": 7,
+        "timePerQuestion": 18,
+        "questions": [
+          { "id": "q_geo_nl_001", "text": "Welk land heeft de meeste eilanden?", "options": ["Indonesië", "Finland", "Zweden", "Noorwegen"], "correct": 2, "explanation": "Zweden heeft ongeveer 267.570 eilanden." },
+          { "id": "q_geo_nl_002", "text": "Hoofdstad van Kazachstan sinds 2022?", "options": ["Nur-Sultan", "Almaty", "Astana", "Bisjkek"], "correct": 2, "explanation": "Terug naar Astana." },
+          { "id": "q_geo_nl_003", "text": "In welk land ligt de Angelwaterval?", "options": ["Brazilië", "Venezuela", "Zaïre", "Nieuw-Zeeland"], "correct": 1, "explanation": "Angelwaterval in Venezuela, 979 m hoog." },
+          { "id": "q_geo_nl_004", "text": "Welke zee heeft het hoogste zoutgehalte?", "options": ["Dode Zee", "Zwarte Zee", "Kaspische Zee", "Witte Zee"], "correct": 0, "explanation": "Dode Zee 34.2% zout." },
+          { "id": "q_geo_nl_005", "text": "Welke stad ligt op twee continenten?", "options": ["Caïro", "Moskou", "Istanboel", "Dubai"], "correct": 2, "explanation": "Istanboel ligt in Europa en Azië." },
+          { "id": "q_geo_nl_006", "text": "Hoogste berg ter wereld (boven zeeniveau)?", "options": ["K2", "Everest", "Kangchenjunga", "Makalu"], "correct": 1, "explanation": "Everest 8.848 m." },
+          { "id": "q_geo_nl_007", "text": "Grootste woestijn ter wereld?", "options": ["Gobi", "Sahara", "Arabische", "Antarctica"], "correct": 3, "explanation": "Antarctica is een poolwoestijn van 14,2 miljoen km²." },
+          { "id": "q_geo_nl_008", "text": "Langste rivier ter wereld?", "options": ["Nijl", "Amazone", "Yangtze", "Mississippi"], "correct": 0, "explanation": "Nijl 6.650 km." },
+          { "id": "q_geo_nl_009", "text": "Welk land staat bekend als 'Windmolenland'?", "options": ["Ierland", "Nederland", "Nieuw-Zeeland", "Chili"], "correct": 1, "explanation": "Nederland staat bekend om windmolens." },
+          { "id": "q_geo_nl_010", "text": "Welk continent is ook een land?", "options": ["Amerika", "Afrika", "Australië", "Europa"], "correct": 2, "explanation": "Australië is zowel continent als land." }
+        ]
+      },
+      "Nederlandse Taal": {
+        "displayName": "📚 Nederlandse Taal (Zeer Moeilijk)",
+        "icon": "🇳🇱",
+        "difficulty": 10,
+        "timePerQuestion": 25,
+        "questions": [
+          { "id": "q_nl_nl_001", "text": "Betekenis 'Met de gebakken peren zitten'?", "options": ["Grote overwinning", "Met de problemen van anderen zitten", "Geld besparen", "Lachen"], "correct": 1, "explanation": "Zitten met de gevolgen." },
+          { "id": "q_nl_nl_002", "text": "Volgens 't kofschip, verleden tijd van 'verven':", "options": ["verfde", "vervte", "verfde of verfte", "vervende"], "correct": 0, "explanation": "Verv-en -> v zit niet in kofschip -> verfde." },
+          { "id": "q_nl_nl_003", "text": "Synoniem van 'aanzienlijk':", "options": ["Klein", "Behoorlijk groot", "Moeilijk", "Zeldzaam"], "correct": 1, "explanation": "Aanzienlijk = groot, aanmerkelijk." },
+          { "id": "q_nl_nl_004", "text": "Uitdrukking 'Helaas pindakaas' betekent?", "options": ["Gefeliciteerd", "Jammer (spottend)", "Verontschuldiging", "Lekker"], "correct": 1, "explanation": "Spottende manier om spijt te betuigen." },
+          { "id": "q_nl_nl_005", "text": "Meervoud van 'museum'?", "options": ["museums", "musea", "beide correct", "museum's"], "correct": 2, "explanation": "Zowel musea als museums is toegestaan." },
+          { "id": "q_nl_nl_006", "text": "Wat betekent 'gezelligheid'?", "options": ["Eenzaamheid", "Probleem", "Gezellige, sociale sfeer", "Verdriet"], "correct": 2, "explanation": "Kernbegrip in de Nederlandse cultuur." },
+          { "id": "q_nl_nl_007", "text": "In welke tijd staat 'Ik heb gisteren een boek gelezen'?", "options": ["Present", "Voltooid tegenwoordige tijd", "Imperfectum", "Toekomst"], "correct": 1, "explanation": "Voltooid tegenwoordige tijd (VTT) met 'heb' + voltooid deelwoord." },
+          { "id": "q_nl_nl_008", "text": "Welk woord betekent 'webpagina'?", "options": ["webpagina", "website", "bladzijde", "link"], "correct": 2, "explanation": "Bladzijde kan ook voor webpagina's gebruikt worden." },
+          { "id": "q_nl_nl_009", "text": "Verleden tijd van 'worden'?", "options": ["werdt", "werd", "wordde", "wordte"], "correct": 1, "explanation": "Worden -> werd (zonder t)." },
+          { "id": "q_nl_nl_010", "text": "Betekenis 'Overmorgen':", "options": ["Gisteren", "Morgen", "Overmorgen (twee dagen later)", "Volgende week"], "correct": 2, "explanation": "De dag na morgen." }
+        ]
+      }
+    }
+  },
+  "users": [
+    { "username": "ڕۆژ حەوار", "totalScore": 2850, "gamesPlayed": 42, "gamesWon": 28, "level": 15, "xp": 12800, "displayName": "Roj Hewar", "language": "ku", "badges": ["Creator", "Master of Cars", "Science Expert"], "avatar": "🏆" },
+    { "username": "Lara_Vlaanderen", "totalScore": 2100, "gamesPlayed": 37, "gamesWon": 19, "level": 12, "xp": 9400, "displayName": "Lara", "language": "nl", "badges": ["Taalvirtuoos"], "avatar": "📚" },
+    { "username": "Hemin_Auto", "totalScore": 1950, "gamesPlayed": 31, "gamesWon": 15, "level": 10, "xp": 8700, "displayName": "هێمن", "language": "ku", "badges": ["Petrolhead"], "avatar": "🔧" },
+    { "username": "Sophie_NL", "totalScore": 1780, "gamesPlayed": 29, "gamesWon": 12, "level": 9, "xp": 7600, "displayName": "Sophie", "language": "nl", "badges": ["Geograaf"], "avatar": "🌍" },
+    { "username": "Dilovan_2024", "totalScore": 1450, "gamesPlayed": 24, "gamesWon": 8, "level": 7, "xp": 6200, "displayName": "دڵۆڤان", "language": "ku", "badges": [], "avatar": "⚡" }
+  ],
+  "roomsHistory": [
+    { "roomCode": "KRD-7742", "host": "ڕۆژ حەوار", "topic": "سەیارەکان", "date": "2026-04-09T19:30:00Z", "players": ["ڕۆژ حەوار", "هێمن", "لارا"], "finalScores": {"ڕۆژ حەوار": 45, "هێمن": 38, "لارا": 42}, "podium": [{"rank":1,"name":"ڕۆژ حەوار","score":45}] }
+  ],
+  "totalGamesPlayed": 127,
+  "usersMeta": {
+    "list": [
+      { "username": "ڕۆژ حەوار", "displayName": "Roj Hewar", "language": "ku", "totalScore": 2850, "rank": 1, "badges": ["Creator", "Master of Cars", "Science Expert"], "avatar": "🏆", "level": 15, "xp": 12800, "gamesPlayed": 42, "gamesWon": 28 },
+      { "username": "Lara_Vlaanderen", "displayName": "Lara", "language": "nl", "totalScore": 2100, "rank": 2, "badges": ["Taalvirtuoos"], "avatar": "📚", "level": 12, "xp": 9400, "gamesPlayed": 37, "gamesWon": 19 },
+      { "username": "Hemin_Auto", "displayName": "هێمن", "language": "ku", "totalScore": 1950, "rank": 3, "badges": ["Petrolhead"], "avatar": "🔧", "level": 10, "xp": 8700, "gamesPlayed": 31, "gamesWon": 15 },
+      { "username": "Sophie_NL", "displayName": "Sophie", "language": "nl", "totalScore": 1780, "rank": 4, "badges": ["Geograaf"], "avatar": "🌍", "level": 9, "xp": 7600, "gamesPlayed": 29, "gamesWon": 12 },
+      { "username": "Dilovan_2024", "displayName": "دڵۆڤان", "language": "ku", "totalScore": 1450, "rank": 5, "badges": [], "avatar": "⚡", "level": 7, "xp": 6200, "gamesPlayed": 24, "gamesWon": 8 }
+    ],
+    "globalRankingAlgorithm": "پلەکان بەپێی کۆی خاڵ، دواتر ڕێژەی بردنەوە، دواتر ئاست دیاری دەکرێن. هەر یارییەک دوای تەواوبوون، خاڵەکانی یاریزانان بەم سیستەمە زیاد دەکرێت."
+  },
+  "rooms": {
+    "activeRooms": [],
+    "history": [
+      { "roomId": "KRD-7742", "host": "ڕۆژ حەوار", "topic": "سەیارەکان", "date": "2026-04-09T19:30:00Z", "players": ["ڕۆژ حەوار", "هێمن", "لارا"], "finalScores": {"ڕۆژ حەوار": 45, "هێمن": 38, "لارا": 42}, "winner": "ڕۆژ حەوار" }
+    ],
+    "roomCodeGeneration": "کۆدی ژوور بە شێوەی 'XXX-1234' دروست دەکرێت (سێ پیتی ڕەمکی و چوار ژمارە)."
+  },
+  "gameLogic": {
+    "scoringAlgorithm": {
+      "basePoints": 10,
+      "timeBonus": "خاڵی زیادە = (کاتی ماوە لەسەر 100) * 2، بەمەرجێک وەڵام ڕاست بێت",
+      "streakBonus": "ئەگەر یاریزانێک 3 وەڵامی ڕاست لەسەر یەک بدات، 5 خاڵی زیادە وەردەگرێت",
+      "finalRanking": "پلەی یەکەم: بەرزترین خاڵ. پلەی دووەم: ئەگەر خاڵەکان یەکسان بن، کەمترین کاتی گشتی وەڵامدانەوە. پلەی سێیەم: دوای ئەوە. ئەگەر هێشتا یەکسان بن، پلەی هاوبەش دەدرێت."
+    },
+    "questionSelection": "بەپێی بابەتی هەڵبژێردراو لەلایەن میواندارەوە، 10 پرسیار لە لیستەکەوە هەڵدەبژێردرێت (بە شێوەی ڕەمکی یان پشت بە ئاستی یاریزانان)."
+  },
+  "extraFeatures": {
+    "chatSystem": "چاتی سادە لە ناو لۆبیدا، پەیامەکان بە شێوەی JSON هەڵدەگیرێن.",
+    "soundEffects": {
+      "correctAnswer": "/sounds/correct.mp3",
+      "wrongAnswer": "/sounds/wrong.mp3",
+      "gameStart": "/sounds/start.mp3",
+      "podiumFanfare": "/sounds/fanfare.mp3"
+    },
+    "themes": {
+      "dark": true,
+      "light": false
+    },
+    "pwaSupport": "ئەم ویبسایتە دەتوانرێت وەک PWA دابمەزرێت بۆ ئامێرەکەت."
+  },
+  "admin": {
+    "totalGamesPlayed": 127,
+    "totalUniqueUsers": 45,
+    "mostPopularTopic": "سەیارەکان",
+    "averageScorePerGame": 86.4,
+    "lastBackup": "2026-04-09T22:30:00Z"
+  }
+}
